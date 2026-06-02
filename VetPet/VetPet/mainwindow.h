@@ -17,7 +17,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+private slots:
+    void switchPage();
+
 private:
     Ui::MainWindow *ui;
+    void setupConnections();
+    void setupTable();
 };
+
 #endif // MAINWINDOW_H
