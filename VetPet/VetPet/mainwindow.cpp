@@ -1,20 +1,33 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QHeaderView>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    
+
+    if (!connectToDatabase()) {
+        QMessageBox::critical(this, "Помилка", "Не вдалося підключитися до бази даних:\n" + db.lastError().text());
+    }
+
     setupConnections();
     setupTable();
 }
 
 MainWindow::~MainWindow()
 {
+    db.close();
     delete ui;
+}
+
+bool MainWindow::connectToDatabase()
+{
+    db = QSqlDatabase::addDatabase("QODBC");
+    db.setDatabaseName("DRIVER={MySQL ODBC 9.7 Unicode Driver};SERVER=localhost;PORT=3306;DATABASE=vetpet;UID=root;PWD=;");
+    return db.open();
 }
 
 void MainWindow::setupConnections()
@@ -51,19 +64,22 @@ void MainWindow::setupTable()
     ui->clientsTable->setShowGrid(false);
     ui->clientsTable->setFocusPolicy(Qt::NoFocus);
     
-    ui->clientsTable->setRowCount(3);
-    
-    ui->clientsTable->setItem(0, 0, new QTableWidgetItem("+380501112233"));
-    ui->clientsTable->setItem(0, 1, new QTableWidgetItem("Бондаренко\nДмитро"));
-    ui->clientsTable->setItem(0, 2, new QTableWidgetItem("→"));
-    
-    ui->clientsTable->setItem(1, 0, new QTableWidgetItem("+380951837573"));
-    ui->clientsTable->setItem(1, 1, new QTableWidgetItem("Вальчук\nСвітлана"));
-    ui->clientsTable->setItem(1, 2, new QTableWidgetItem("→"));
-    
-    ui->clientsTable->setItem(2, 0, new QTableWidgetItem("+380661256567"));
-    ui->clientsTable->setItem(2, 1, new QTableWidgetItem("Гринь\nОксана"));
-    ui->clientsTable->setItem(2, 2, new QTableWidgetItem("→"));
+    QSqlQuery query("SELECT phone, first_name, last_name FROM clients ORDER BY last_name ASC");
+    int row = 0;
+    ui->clientsTable->setRowCount(0);
+
+    while (query.next()) {
+        ui->clientsTable->insertRow(row);
+        
+        QString phone = query.value(0).toString();
+        QString fullName = query.value(2).toString() + "\n" + query.value(1).toString();
+        
+        ui->clientsTable->setItem(row, 0, new QTableWidgetItem(phone));
+        ui->clientsTable->setItem(row, 1, new QTableWidgetItem(fullName));
+        ui->clientsTable->setItem(row, 2, new QTableWidgetItem("→"));
+        
+        row++;
+    }
     
     ui->clientsTable->resizeRowsToContents();
 }
