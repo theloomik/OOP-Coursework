@@ -26,6 +26,10 @@
     QLineEdit { background-color: #1E1E1E; color: #FFFFFF; border: none; padding: 10px; border-radius: 5px; }
     QTableWidget { background-color: transparent; color: #FFFFFF; border: none; gridline-color: #3E3E42; }
     QHeaderView::section { background-color: #2D2D30; color: #888888; border: none; text-align: left; padding: 5px; }
+    QTableWidget { background-color: transparent; border: none; }
+    QTableWidget::item { border-bottom: 1px solid #3E3E42; padding-left: 20px; }
+    QTableWidget::item:hover { background-color: #3E3E42; }
+    QTableWidget::item:selected { background-color: #3F3F46; color: #FFFFFF; }
    </string>
   </property>
   <widget class="QWidget" name="centralwidget">

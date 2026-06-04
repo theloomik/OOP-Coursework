@@ -57,16 +57,36 @@ void MainWindow::switchPage()
 
 void MainWindow::setupTable()
 {
-    ui->clientsTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    // Налаштування поведінки колонок
+    ui->clientsTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->clientsTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->clientsTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
     
-    ui->clientsTable->setShowGrid(false);
+    // Адаптація під дизайн Avalonia (відступи, висота рядка, вимкнення фокусної рамки)
+    ui->clientsTable->verticalHeader()->setDefaultSectionSize(65);
     ui->clientsTable->setFocusPolicy(Qt::NoFocus);
+    ui->clientsTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->clientsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->clientsTable->setShowGrid(false);
     
+    // Стилізація заголовків таблиці відповідно до макету
+    ui->clientsTable->horizontalHeader()->setStyleSheet(
+        "QHeaderView::section {"
+        "background-color: transparent;"
+        "color: #888888;"
+        "padding-left: 20px;"
+        "font-weight: bold;"
+        "font-size: 11px;"
+        "border: none;"
+        "}"
+    );
+
     QSqlQuery query("SELECT phone, first_name, last_name FROM clients ORDER BY last_name ASC");
     int row = 0;
     ui->clientsTable->setRowCount(0);
+
+    QFont phoneFont("Segoe UI", 11, QFont::Bold);
+    QFont nameFont("Segoe UI", 10);
 
     while (query.next()) {
         ui->clientsTable->insertRow(row);
@@ -74,12 +94,27 @@ void MainWindow::setupTable()
         QString phone = query.value(0).toString();
         QString fullName = query.value(2).toString() + "\n" + query.value(1).toString();
         
-        ui->clientsTable->setItem(row, 0, new QTableWidgetItem(phone));
-        ui->clientsTable->setItem(row, 1, new QTableWidgetItem(fullName));
-        ui->clientsTable->setItem(row, 2, new QTableWidgetItem("→"));
+        // Телефон (Колонка 0)
+        QTableWidgetItem *phoneItem = new QTableWidgetItem(phone);
+        phoneItem->setFont(phoneFont);
+        phoneItem->setForeground(QColor("#FFFFFF"));
+        phoneItem->setTextAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+        ui->clientsTable->setItem(row, 0, phoneItem);
+        
+        // Прізвище та Ім'я (Колонка 1)
+        QTableWidgetItem *nameItem = new QTableWidgetItem(fullName);
+        nameItem->setFont(nameFont);
+        nameItem->setForeground(QColor("#E0E0E0"));
+        nameItem->setTextAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+        ui->clientsTable->setItem(row, 1, nameItem);
+        
+        // Індикатор дії (Колонка 2)
+        QTableWidgetItem *actionItem = new QTableWidgetItem("→");
+        actionItem->setFont(phoneFont);
+        actionItem->setForeground(QColor("#888888"));
+        actionItem->setTextAlignment(Qt::AlignVCenter | Qt::AlignRight);
+        ui->clientsTable->setItem(row, 2, actionItem);
         
         row++;
     }
-    
-    ui->clientsTable->resizeRowsToContents();
 }
