@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProvidersView</class>
+ <widget class="QWidget" name="ProvidersView">
+  <property name="styleSheet">
+   <string>
+    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; }
+    QLabel.headerLabel { color: #757575; font-size: 12px; font-weight: 600; }
+    QLineEdit#searchEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; font-size: 15px; min-height: 42px; }
+    QLineEdit#searchEdit::placeholder { color: #767676; }
+    QPushButton#sortBtn, QPushButton#newBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: bold; }
+    QPushButton#sortBtn:hover, QPushButton#newBtn:hover { background-color: #505050; }
+    QTableWidget#providersTable { background-color: transparent; color: #FFFFFF; border: none; outline: none; }
+    QTableWidget#providersTable::item { border-bottom: 1px solid rgba(255,255,255,13); }
+    QTableWidget#providersTable::item:hover { background-color: #333333; }
+    QWidget#addOverlay { background-color: rgba(0, 0, 0, 165); }
+    QFrame#addModalCard { background-color: #2B2B2B; border: 1px solid #4A4A4A; border-radius: 14px; }
+    QLineEdit.modalField { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; }
+    QLabel#errorLabel { color: #FF6B6B; font-size: 13px; }
+    QPushButton#cancelAddBtn { background-color: #3A3A3A; color: #AAAAAA; border: none; border-radius: 10px; min-height: 42px; }
+    QPushButton#saveAddBtn { background-color: #3A3A3A; color: #FFFFFF; border: 1.5px solid #4A7C59; border-radius: 10px; min-height: 42px; font-weight: 600; }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin"><number>30</number></property>
+   <property name="topMargin"><number>25</number></property>
+   <property name="rightMargin"><number>30</number></property>
+   <property name="bottomMargin"><number>25</number></property>
+   <item><widget class="QLabel" name="titleLabel"><property name="text"><string>Провайдери</string></property></widget></item>
+   <item>
+    <layout class="QHBoxLayout" name="searchLayout">
+     <property name="spacing"><number>10</number></property>
+     <property name="bottomMargin"><number>20</number></property>
+     <item><widget class="QLineEdit" name="searchEdit"><property name="placeholderText"><string>Пошук (назва, телефон, контакт)</string></property></widget></item>
+     <item><widget class="QPushButton" name="sortBtn"><property name="minimumSize"><size><width>60</width><height>42</height></size></property><property name="maximumSize"><size><width>60</width><height>42</height></size></property><property name="text"><string>А → Я</string></property></widget></item>
+     <item><widget class="QPushButton" name="newBtn"><property name="minimumSize"><size><width>100</width><height>42</height></size></property><property name="maximumSize"><size><width>100</width><height>42</height></size></property><property name="text"><string>+ Новий</string></property></widget></item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="headerLayout">
+     <property name="leftMargin"><number>10</number></property>
+     <property name="rightMargin"><number>10</number></property>
+     <property name="bottomMargin"><number>8</number></property>
+     <item><widget class="QLabel" name="headerPhone"><property name="text"><string>ТЕЛЕФОН</string></property><property name="minimumSize"><size><width>150</width><height>0</height></size></property><property name="maximumSize"><size><width>150</width><height>16777215</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="headerSpacer1"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeType"><enum>QSizePolicy::Fixed</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property></spacer></item>
+     <item><widget class="QLabel" name="headerName"><property name="text"><string>НАЗВА / ПРЕДСТАВНИК</string></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="headerSpacer2"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+     <item><spacer name="headerSpacer3"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeType"><enum>QSizePolicy::Fixed</enum></property><property name="sizeHint" stdset="0"><size><width>60</width><height>20</height></size></property></spacer></item>
+    </layout>
+   </item>
+   <item><widget class="QTableWidget" name="providersTable"><property name="focusPolicy"><enum>Qt::NoFocus</enum></property><property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property><property name="showGrid"><bool>false</bool></property><property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property><attribute name="horizontalHeaderVisible"><bool>false</bool></attribute><attribute name="verticalHeaderVisible"><bool>false</bool></attribute><column/><column/><column/></widget></item>
+  </layout>
+  <widget class="QWidget" name="addOverlay">
+   <property name="visible"><bool>false</bool></property>
+   <layout class="QVBoxLayout" name="overlayLayout">
+    <item><spacer name="overlayTopSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QFrame" name="addModalCard">
+      <property name="minimumSize"><size><width>420</width><height>0</height></size></property>
+      <property name="maximumSize"><size><width>420</width><height>16777215</height></size></property>
+      <layout class="QVBoxLayout" name="modalLayout">
+       <property name="spacing"><number>14</number></property>
+       <property name="leftMargin"><number>28</number></property>
+       <property name="topMargin"><number>28</number></property>
+       <property name="rightMargin"><number>28</number></property>
+       <property name="bottomMargin"><number>28</number></property>
+       <item alignment="Qt::AlignHCenter"><widget class="QLabel" name="addModalTitle"><property name="text"><string>Новий провайдер</string></property><property name="styleSheet"><string>color: white; font-size: 20px; font-weight: bold;</string></property></widget></item>
+       <item><widget class="QLineEdit" name="addNameEdit"><property name="placeholderText"><string>Назва *</string></property><attribute name="class"><string>modalField</string></attribute></widget></item>
+       <item><widget class="QLineEdit" name="addPhoneEdit"><property name="placeholderText"><string>Номер телефону *</string></property><attribute name="class"><string>modalField</string></attribute></widget></item>
+       <item><widget class="QLineEdit" name="addContactEdit"><property name="placeholderText"><string>Контактна особа</string></property><attribute name="class"><string>modalField</string></attribute></widget></item>
+       <item><widget class="QLineEdit" name="addEmailEdit"><property name="placeholderText"><string>Email</string></property><attribute name="class"><string>modalField</string></attribute></widget></item>
+       <item><widget class="QLineEdit" name="addAddressEdit"><property name="placeholderText"><string>Адреса</string></property><attribute name="class"><string>modalField</string></attribute></widget></item>
+       <item alignment="Qt::AlignHCenter"><widget class="QLabel" name="errorLabel"><property name="visible"><bool>false</bool></property></widget></item>
+       <item>
+        <layout class="QHBoxLayout" name="modalButtonsLayout">
+         <property name="spacing"><number>10</number></property>
+         <item><widget class="QPushButton" name="cancelAddBtn"><property name="text"><string>Скасувати</string></property></widget></item>
+         <item><widget class="QPushButton" name="saveAddBtn"><property name="text"><string>Зберегти</string></property></widget></item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item><spacer name="overlayBottomSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

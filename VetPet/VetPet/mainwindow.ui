@@ -15,21 +15,45 @@
   </property>
   <property name="styleSheet">
    <string>
-    QMainWindow { background-color: #1E1E1E; }
-    QWidget#sidebarWidget, QWidget#mainWidget { background-color: #2D2D30; border-radius: 10px; }
-    QLabel#logoLabel { color: #FFFFFF; font-size: 24px; font-weight: bold; }
+    QMainWindow { background-color: #1E1E1E; font-family: "Segoe UI", "Inter", Arial; }
+    QWidget#sidebarWidget, QWidget#mainWidget { background-color: #2B2B2B; border-radius: 14px; }
+    QLabel#logoLabel { color: #FFFFFF; font-size: 22px; font-weight: bold; }
     QLabel { color: #FFFFFF; }
-    QPushButton { background-color: transparent; color: #CCCCCC; text-align: left; padding: 10px; border-radius: 5px; font-size: 14px; }
-    QPushButton:hover { background-color: #3E3E42; color: #FFFFFF; }
-    QPushButton:checked { background-color: #3F3F46; color: #FFFFFF; font-weight: bold; }
-    QPushButton#quickRecordBtn, QPushButton#newBtn { background-color: #3E3E42; color: #FFFFFF; text-align: center; border: 1px solid #555555; }
-    QLineEdit { background-color: #1E1E1E; color: #FFFFFF; border: none; padding: 10px; border-radius: 5px; }
+    QPushButton {
+      background-color: transparent;
+      color: #B0B0B0;
+      text-align: left;
+      padding: 0 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      min-height: 45px;
+    }
+    QPushButton:hover { background-color: #3A3A3A; color: #FFFFFF; }
+    QPushButton:checked { background-color: #454545; color: #FFFFFF; font-weight: 600; }
+    QPushButton#quickRecordBtn {
+      background-color: #3A3A3A;
+      color: #FFFFFF;
+      text-align: center;
+      border: 1.5px solid #4A6A7C;
+      border-radius: 10px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    QLineEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; padding: 0 14px; border-radius: 10px; min-height: 42px; }
     QTableWidget { background-color: transparent; color: #FFFFFF; border: none; gridline-color: #3E3E42; }
-    QHeaderView::section { background-color: #2D2D30; color: #888888; border: none; text-align: left; padding: 5px; }
+    QHeaderView::section { background-color: transparent; color: #757575; border: none; text-align: left; padding: 5px; font-size: 12px; font-weight: 600; }
     QTableWidget { background-color: transparent; border: none; }
     QTableWidget::item { border-bottom: 1px solid #3E3E42; padding-left: 20px; }
-    QTableWidget::item:hover { background-color: #3E3E42; }
-    QTableWidget::item:selected { background-color: #3F3F46; color: #FFFFFF; }
+    QTableWidget::item:hover { background-color: #333333; }
+    QTableWidget::item:selected { background-color: #333333; color: #FFFFFF; }
+    QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }
+    QScrollBar::handle:vertical { background: #555555; border-radius: 4px; min-height: 28px; }
+    QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; background: transparent; }
+    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: transparent; }
+    QComboBox { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; min-height: 42px; padding: 0 12px; }
+    QComboBox QAbstractItemView { background-color: #2B2B2B; color: #FFFFFF; selection-background-color: #3A3A3A; border: 1px solid #4A4A4A; }
    </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -53,19 +77,19 @@
      <widget class="QWidget" name="sidebarWidget" native="true">
       <property name="minimumSize">
        <size>
-        <width>220</width>
+        <width>260</width>
         <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>220</width>
+        <width>260</width>
         <height>16777215</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
-        <number>10</number>
+        <number>6</number>
        </property>
        <item>
         <widget class="QLabel" name="logoLabel">
@@ -168,13 +192,13 @@
      <widget class="QWidget" name="mainWidget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="leftMargin">
-        <number>30</number>
+        <number>24</number>
        </property>
        <property name="topMargin">
         <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>30</number>
+        <number>24</number>
        </property>
        <property name="bottomMargin">
         <number>20</number>
@@ -187,7 +211,7 @@
             <string>Робоча панель</string>
            </property>
            <property name="styleSheet">
-            <string>color: #888888;</string>
+            <string>color: #A2A2A2; font-size: 14px; font-weight: 600;</string>
            </property>
           </widget>
          </item>
@@ -226,226 +250,50 @@
          </property>
          <widget class="QWidget" name="pageClients">
           <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QLabel" name="pageTitle_1">
-             <property name="text">
-              <string>Клієнти</string>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="searchLayout">
-             <property name="topMargin">
-              <number>15</number>
-             </property>
-             <property name="bottomMargin">
-              <number>15</number>
-             </property>
-             <item>
-              <widget class="QLineEdit" name="searchEdit">
-               <property name="placeholderText">
-                <string>Пошук (телефон, ім'я, прізвище, кличка)</string>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="sortBtn">
-               <property name="text">
-                <string>А → Я</string>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>60</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string>background-color: #3E3E42; border: none; color: white;</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="newBtn">
-               <property name="text">
-                <string>+ Новий</string>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QTableWidget" name="clientsTable">
-             <property name="showGrid">
-              <bool>false</bool>
-             </property>
-             <property name="alternatingRowColors">
-              <bool>false</bool>
-             </property>
-             <property name="selectionBehavior">
-              <enum>QAbstractItemView::SelectRows</enum>
-             </property>
-             <attribute name="horizontalHeaderVisible">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="verticalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-             <column>
-              <property name="text">
-               <string>ТЕЛЕФОН</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>ПРІЗВИЩЕ ТА ІМ'Я</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string/>
-              </property>
-             </column>
-            </widget>
-           </item>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
           </layout>
          </widget>
          <widget class="QWidget" name="pageRecords">
           <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QLabel" name="pageTitle_2">
-             <property name="text">
-              <string>Записи</string>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+           <property name="leftMargin"><number>0</number></property>
+           <property name="topMargin"><number>0</number></property>
+           <property name="rightMargin"><number>0</number></property>
+           <property name="bottomMargin"><number>0</number></property>
           </layout>
          </widget>
          <widget class="QWidget" name="pageStaff">
           <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="QLabel" name="pageTitle_3">
-             <property name="text">
-              <string>Працівники</string>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+           <property name="leftMargin"><number>0</number></property>
+           <property name="topMargin"><number>0</number></property>
+           <property name="rightMargin"><number>0</number></property>
+           <property name="bottomMargin"><number>0</number></property>
           </layout>
          </widget>
          <widget class="QWidget" name="pageProviders">
           <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QLabel" name="pageTitle_4">
-             <property name="text">
-              <string>Провайдери</string>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+           <property name="leftMargin"><number>0</number></property>
+           <property name="topMargin"><number>0</number></property>
+           <property name="rightMargin"><number>0</number></property>
+           <property name="bottomMargin"><number>0</number></property>
           </layout>
          </widget>
          <widget class="QWidget" name="pageStock">
           <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item>
-            <widget class="QLabel" name="pageTitle_5">
-             <property name="text">
-              <string>Склад</string>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>20</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+           <property name="leftMargin"><number>0</number></property>
+           <property name="topMargin"><number>0</number></property>
+           <property name="rightMargin"><number>0</number></property>
+           <property name="bottomMargin"><number>0</number></property>
           </layout>
          </widget>
         </widget>

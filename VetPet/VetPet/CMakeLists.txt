@@ -19,6 +19,23 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        clientsview.cpp
+        clientsview.h
+        clientsview.ui
+        appointmentsview.cpp
+        appointmentsview.h
+        appointmentsview.ui
+        staffview.cpp
+        staffview.h
+        staffview.ui
+        providersview.cpp
+        providersview.h
+        providersview.ui
+        recorddetailsview.cpp
+        recorddetailsview.h
+        stockview.cpp
+        stockview.h
+        stockview.ui
         ${TS_FILES}
 )
 

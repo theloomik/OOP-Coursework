@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AppointmentsView</class>
+ <widget class="QWidget" name="AppointmentsView">
+  <property name="styleSheet">
+   <string>
+    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; }
+    QLabel.headerLabel { color: #757575; font-size: 12px; font-weight: 600; }
+    QLineEdit#searchEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; }
+    QPushButton#sortBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: bold; }
+    QLabel#emptyLabel { color: #999999; font-size: 15px; }
+    QScrollArea#listScroll { background-color: transparent; border: none; }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin"><number>30</number></property>
+   <property name="topMargin"><number>25</number></property>
+   <property name="rightMargin"><number>30</number></property>
+   <property name="bottomMargin"><number>25</number></property>
+   <item><widget class="QLabel" name="titleLabel"><property name="text"><string>Записи</string></property></widget></item>
+   <item>
+    <layout class="QHBoxLayout" name="searchLayout">
+     <property name="spacing"><number>10</number></property>
+     <property name="bottomMargin"><number>20</number></property>
+     <item><widget class="QLineEdit" name="searchEdit"><property name="placeholderText"><string>Пошук (телефон, ПІБ клієнта, кличка)</string></property></widget></item>
+     <item><widget class="QPushButton" name="sortBtn"><property name="minimumSize"><size><width>86</width><height>42</height></size></property><property name="maximumSize"><size><width>86</width><height>42</height></size></property><property name="text"><string>Дата ↑</string></property></widget></item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="headerLayout">
+     <property name="leftMargin"><number>10</number></property>
+     <property name="rightMargin"><number>10</number></property>
+     <property name="bottomMargin"><number>8</number></property>
+     <item><widget class="QLabel" name="headerDate"><property name="text"><string>ДАТА ТА ЧАС</string></property><property name="minimumSize"><size><width>170</width><height>0</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="h1"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeType"><enum>QSizePolicy::Fixed</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>20</height></size></property></spacer></item>
+     <item><widget class="QLabel" name="headerClient"><property name="text"><string>КЛІЄНТ</string></property><property name="minimumSize"><size><width>170</width><height>0</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="h2"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeType"><enum>QSizePolicy::Fixed</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>20</height></size></property></spacer></item>
+     <item><widget class="QLabel" name="headerPet"><property name="text"><string>КЛИЧКА</string></property><property name="minimumSize"><size><width>130</width><height>0</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="h3"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeType"><enum>QSizePolicy::Fixed</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>20</height></size></property></spacer></item>
+     <item><widget class="QLabel" name="headerStatus"><property name="text"><string>СТАТУС</string></property><property name="minimumSize"><size><width>130</width><height>0</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><attribute name="class"><string>headerLabel</string></attribute></widget></item>
+     <item><spacer name="h4"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+    </layout>
+   </item>
+   <item><widget class="QLabel" name="emptyLabel"><property name="text"><string>Записів за фільтром не знайдено</string></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="visible"><bool>false</bool></property></widget></item>
+   <item>
+    <widget class="QScrollArea" name="listScroll">
+     <property name="widgetResizable"><bool>true</bool></property>
+     <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOff</enum></property>
+     <widget class="QWidget" name="listContainer">
+      <layout class="QVBoxLayout" name="listLayout">
+       <property name="spacing"><number>0</number></property>
+       <property name="leftMargin"><number>0</number></property>
+       <property name="topMargin"><number>0</number></property>
+       <property name="rightMargin"><number>0</number></property>
+       <property name="bottomMargin"><number>0</number></property>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
