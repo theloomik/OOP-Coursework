@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StaffDetailsView</class>
+ <widget class="QWidget" name="StaffDetailsView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>820</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#StaffDetailsView {
+    background-color: #1E1E1E;
+}
+QPushButton#backBtn {
+    background-color: #3A3A3A;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+QPushButton#backBtn:hover {
+    background-color: #484848;
+}
+QLabel#titleLabel {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+QFrame#cardFrame {
+    background-color: #313131;
+    border-radius: 14px;
+    border: none;
+}
+QLabel#nameLabel {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 4px;
+}
+QLabel#archivedLabel {
+    color: #C68B8B;
+    font-size: 14px;
+}
+QLabel#loadErrorLabel {
+    color: #FF6B6B;
+    font-size: 14px;
+}
+QPushButton#editBtn {
+    background-color: #3A3A3A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 0px;
+}
+QPushButton#editBtn:hover {
+    background-color: #484848;
+}
+QPushButton#archiveBtn {
+    background-color: #5C3B3B;
+    color: #C68B8B;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 0px;
+}
+QPushButton#archiveBtn:hover {
+    background-color: #6E4545;
+}
+QLabel#phoneLbl,
+QLabel#positionLbl,
+QLabel#salaryLbl,
+QLabel#workDaysLbl,
+QLabel#workHoursLbl,
+QLabel#createdAtLbl {
+    color: #888888;
+    font-size: 13px;
+}
+QLabel#phoneValue,
+QLabel#positionValue,
+QLabel#salaryValue,
+QLabel#workDaysValue,
+QLabel#workHoursValue,
+QLabel#createdAtValue {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+QLineEdit {
+    background-color: #3A3A3A;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+}
+QLineEdit:focus {
+    border: 1px solid #5A9E6F;
+}
+QLineEdit:hover {
+    border: 1px solid #555555;
+}
+QComboBox {
+    background-color: #3A3A3A;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+}
+QComboBox:hover {
+    border: 1px solid #555555;
+}
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+QComboBox QAbstractItemView {
+    background-color: #3A3A3A;
+    color: white;
+    selection-background-color: #484848;
+    border: 1px solid #444444;
+    outline: none;
+}
+QLabel#timeSepLabel {
+    color: #888888;
+    font-size: 16px;
+}
+QLabel#editErrorLabel {
+    color: #FF6B6B;
+    font-size: 13px;
+}
+QPushButton#cancelEditBtn {
+    background-color: #3A3A3A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 0px;
+}
+QPushButton#cancelEditBtn:hover {
+    background-color: #484848;
+}
+QPushButton#saveEditBtn {
+    background-color: #2E6648;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 0px;
+}
+QPushButton#saveEditBtn:hover {
+    background-color: #3A7D5A;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="outerLayout">
+   <property name="leftMargin"><number>30</number></property>
+   <property name="topMargin"><number>25</number></property>
+   <property name="rightMargin"><number>30</number></property>
+   <property name="bottomMargin"><number>25</number></property>
+   <property name="spacing"><number>0</number></property>
+   <item>
+    <layout class="QHBoxLayout" name="headerLayout">
+     <property name="spacing"><number>14</number></property>
+     <item>
+      <widget class="QPushButton" name="backBtn">
+       <property name="text"><string>←</string></property>
+       <property name="minimumSize">
+        <size><width>40</width><height>40</height></size>
+       </property>
+       <property name="maximumSize">
+        <size><width>40</width><height>40</height></size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="titleLabel">
+       <property name="text"><string>Профіль працівника</string></property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="headerSpacer">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0">
+        <size><width>40</width><height>20</height></size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="headerGap">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+     <property name="sizeHint" stdset="0">
+      <size><width>20</width><height>20</height></size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QFrame" name="cardFrame">
+     <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+     <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+     <layout class="QVBoxLayout" name="cardLayout">
+      <property name="leftMargin"><number>28</number></property>
+      <property name="topMargin"><number>28</number></property>
+      <property name="rightMargin"><number>28</number></property>
+      <property name="bottomMargin"><number>28</number></property>
+      <property name="spacing"><number>12</number></property>
+      <item>
+       <widget class="QLabel" name="nameLabel">
+        <property name="text"><string></string></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="archivedLabel">
+        <property name="text"><string>Архівовано</string></property>
+        <property name="visible"><bool>false</bool></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="loadErrorLabel">
+        <property name="text"><string></string></property>
+        <property name="visible"><bool>false</bool></property>
+        <property name="wordWrap"><bool>true</bool></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="actionWidget">
+        <property name="visible"><bool>false</bool></property>
+        <layout class="QHBoxLayout" name="actionLayout">
+         <property name="leftMargin"><number>0</number></property>
+         <property name="topMargin"><number>0</number></property>
+         <property name="rightMargin"><number>0</number></property>
+         <property name="bottomMargin"><number>0</number></property>
+         <property name="spacing"><number>10</number></property>
+         <item>
+          <widget class="QPushButton" name="editBtn">
+           <property name="text"><string>Редагувати</string></property>
+           <property name="minimumWidth"><number>100</number></property>
+           <property name="maximumWidth"><number>100</number></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="archiveBtn">
+           <property name="text"><string>Архівувати</string></property>
+           <property name="minimumWidth"><number>100</number></property>
+           <property name="maximumWidth"><number>100</number></property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="actionSpacer">
+           <property name="orientation"><enum>Qt::Horizontal</enum></property>
+           <property name="sizeHint" stdset="0">
+            <size><width>40</width><height>20</height></size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="detailsWidget">
+        <layout class="QGridLayout" name="detailsGrid">
+         <property name="leftMargin"><number>0</number></property>
+         <property name="topMargin"><number>0</number></property>
+         <property name="rightMargin"><number>0</number></property>
+         <property name="bottomMargin"><number>0</number></property>
+         <property name="horizontalSpacing"><number>16</number></property>
+         <property name="verticalSpacing"><number>10</number></property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="phoneLbl">
+           <property name="text"><string>Телефон:</string></property>
+           <property name="minimumWidth"><number>180</number></property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="phoneValue">
+           <property name="text"><string></string></property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="positionLbl">
+           <property name="text"><string>Посада:</string></property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="positionValue">
+           <property name="text"><string></string></property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="salaryLbl">
+           <property name="text"><string>Зарплата:</string></property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="salaryValue">
+           <property name="text"><string></string></property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="workDaysLbl">
+           <property name="text"><string>Робочі дні:</string></property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="workDaysValue">
+           <property name="text"><string></string></property>
+           <property name="wordWrap"><bool>true</bool></property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="workHoursLbl">
+           <property name="text"><string>Години роботи:</string></property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="workHoursValue">
+           <property name="text"><string></string></property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="createdAtLbl">
+           <property name="text"><string>Створено:</string></property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="createdAtValue">
+           <property name="text"><string></string></property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="editWidget">
+        <property name="visible"><bool>false</bool></property>
+        <layout class="QVBoxLayout" name="editLayout">
+         <property name="leftMargin"><number>0</number></property>
+         <property name="topMargin"><number>0</number></property>
+         <property name="rightMargin"><number>0</number></property>
+         <property name="bottomMargin"><number>0</number></property>
+         <property name="spacing"><number>10</number></property>
+         <item>
+          <widget class="QLineEdit" name="lastNameEdit">
+           <property name="placeholderText"><string>Прізвище</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="firstNameEdit">
+           <property name="placeholderText"><string>Ім'я</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="phoneEditForm">
+           <property name="placeholderText"><string>Телефон</string></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="positionCombo"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="workDaysEdit">
+           <property name="placeholderText"><string>Робочі дні (Mon,Tue,...)</string></property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="timeLayout">
+           <property name="spacing"><number>8</number></property>
+           <item>
+            <widget class="QLineEdit" name="startTimeEdit">
+             <property name="placeholderText"><string>09:00</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="timeSepLabel">
+             <property name="text"><string>—</string></property>
+             <property name="alignment"><set>Qt::AlignCenter</set></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="endTimeEdit">
+             <property name="placeholderText"><string>18:00</string></property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="editErrorLabel">
+           <property name="text"><string></string></property>
+           <property name="visible"><bool>false</bool></property>
+           <property name="wordWrap"><bool>true</bool></property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="editBtnLayout">
+           <property name="spacing"><number>10</number></property>
+           <item>
+            <widget class="QPushButton" name="cancelEditBtn">
+             <property name="text"><string>Скасувати</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="saveEditBtn">
+             <property name="text"><string>Зберегти</string></property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="bottomSpacer">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0">
+      <size><width>20</width><height>40</height></size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

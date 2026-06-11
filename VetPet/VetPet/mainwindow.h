@@ -9,6 +9,8 @@
 class AppointmentsView;
 class ClientsView;
 class ProvidersView;
+class QuickAppointmentView;
+class StaffDetailsView;
 class StaffView;
 class StockView;
 
@@ -32,6 +34,10 @@ private slots:
     void openStaffDetails(int staffId);
     void openProviderDetails(int providerId);
     void returnFromDetails(RecordDetailsView::Kind kind);
+    void openQuickAppointment();
+    void onQuickAppointmentCancelled();
+    void onQuickAppointmentSaved(int clientId);
+    void onStaffDetailsBack();
 
 private:
     Ui::MainWindow *ui;
@@ -42,7 +48,11 @@ private:
     ProvidersView *m_providersView = nullptr;
     StockView *m_stockView = nullptr;
     RecordDetailsView *m_detailsView = nullptr;
+    QuickAppointmentView *m_quickView = nullptr;
+    StaffDetailsView *m_staffDetailsView = nullptr;
     int m_detailsPageIndex = -1;
+    int m_quickViewPageIndex = -1;
+    int m_staffDetailsPageIndex = -1;
 
     void setupConnections();
     void setupPages();

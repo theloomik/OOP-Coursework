@@ -31,6 +31,12 @@ set(PROJECT_SOURCES
         providersview.cpp
         providersview.h
         providersview.ui
+        quickappointmentview.cpp
+        quickappointmentview.h
+        quickappointmentview.ui
+        staffdetailsview.cpp
+        staffdetailsview.h
+        staffdetailsview.ui
         recorddetailsview.cpp
         recorddetailsview.h
         stockview.cpp
