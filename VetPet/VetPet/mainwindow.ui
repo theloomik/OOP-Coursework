@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string>
     QMainWindow { background-color: #1E1E1E; font-family: "Segoe UI", "Inter", Arial; }
-    QWidget#sidebarWidget, QWidget#mainWidget { background-color: #2B2B2B; border-radius: 14px; }
+    QWidget#sidebarWidget, QWidget#mainWidget { background-color: #3B3B3B; border-radius: 15px; }
     QLabel#logoLabel { color: #FFFFFF; font-size: 22px; font-weight: bold; }
     QLabel { color: #FFFFFF; }
     QPushButton {
@@ -149,7 +149,7 @@
        <item>
         <widget class="QPushButton" name="navProvidersBtn">
          <property name="text">
-          <string>🏢 Провайдери</string>
+          <string>🏭 Провайдери</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -236,12 +236,31 @@
            <property name="minimumSize">
             <size>
              <width>150</width>
-             <height>35</height>
+             <height>40</height>
             </size>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="headerSeparator">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string>QFrame { background-color: rgba(255,255,255,15); border: none; }</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">

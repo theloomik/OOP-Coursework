@@ -4,12 +4,19 @@
  <widget class="QWidget" name="AppointmentsView">
   <property name="styleSheet">
    <string>
-    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; }
+    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; margin-bottom: 20px; }
     QLabel.headerLabel { color: #757575; font-size: 12px; font-weight: 600; }
-    QLineEdit#searchEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; }
-    QPushButton#sortBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: bold; }
+    QLineEdit#searchEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; font-size: 15px; }
+    QLineEdit#searchEdit:focus { background-color: #202020; }
+    QPushButton#sortBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: 600; font-size: 15px; }
+    QPushButton#sortBtn:hover { background-color: #505050; }
     QLabel#emptyLabel { color: #999999; font-size: 15px; }
     QScrollArea#listScroll { background-color: transparent; border: none; }
+    QScrollArea#listScroll QWidget { background-color: transparent; }
+    QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }
+    QScrollBar::handle:vertical { background: #555555; border-radius: 4px; min-height: 28px; }
+    QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; background: transparent; }
+    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: transparent; }
    </string>
   </property>
   <layout class="QVBoxLayout" name="mainLayout">

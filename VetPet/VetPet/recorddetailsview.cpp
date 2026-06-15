@@ -76,7 +76,7 @@ void RecordDetailsView::setupUi()
     connect(backButton, &QPushButton::clicked, this, &RecordDetailsView::onBackClicked);
 
     m_titleLabel = new QLabel;
-    m_titleLabel->setStyleSheet(QStringLiteral("color: white; font-size: 26px; font-weight: bold;"));
+    m_titleLabel->setStyleSheet(QStringLiteral("color: white; font-size: 26px; font-weight: bold; margin-bottom: 4px;"));
 
     auto *headerLayout = new QHBoxLayout;
     headerLayout->setSpacing(16);
@@ -92,7 +92,14 @@ void RecordDetailsView::setupUi()
     auto *scroll = new QScrollArea;
     scroll->setWidgetResizable(true);
     scroll->setFrameShape(QFrame::NoFrame);
-    scroll->setStyleSheet(QStringLiteral("QScrollArea { background: transparent; }"));
+    scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scroll->setStyleSheet(QStringLiteral(
+        "QScrollArea { background: transparent; border: none; }"
+        "QScrollArea > QWidget > QWidget { background: transparent; }"
+        "QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }"
+        "QScrollBar::handle:vertical { background: #555555; border-radius: 4px; min-height: 28px; }"
+        "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; background: transparent; }"
+        "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: transparent; }"));
 
     auto *content = new QWidget;
     m_rootLayout = new QVBoxLayout(content);
@@ -109,15 +116,16 @@ void RecordDetailsView::setupUi()
     m_thirdTitleLabel = new QLabel;
 
     for (QLabel *label : {m_infoTitleLabel, m_firstTitleLabel, m_secondTitleLabel, m_thirdTitleLabel}) {
-        label->setStyleSheet(QStringLiteral("color: white; font-size: 20px; font-weight: bold; margin-top: 2px;"));
+        label->setStyleSheet(QStringLiteral("color: white; font-size: 20px; font-weight: bold; margin-top: 8px; margin-bottom: 4px;"));
         label->setVisible(false);
     }
 
     for (QTableWidget *table : {m_infoTable, m_firstTable, m_secondTable, m_thirdTable}) {
         table->setStyleSheet(QStringLiteral(
-            "QTableWidget { background-color: #313131; color: #E0E0E0; border: 1px solid #3B3B3B; border-radius: 14px; gridline-color: rgba(255,255,255,13); }"
-            "QHeaderView::section { background-color: #313131; color: #757575; border: none; padding: 8px 10px; font-size: 12px; font-weight: 600; }"
-            "QTableWidget::item { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,13); }"
+            "QTableWidget { background-color: #2F2F2F; color: #E0E0E0; border: 1px solid #3B3B3B; border-radius: 14px; gridline-color: rgba(255,255,255,13); }"
+            "QHeaderView::section { background-color: #2F2F2F; color: #757575; border: none; padding: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }"
+            "QTableWidget::item { padding: 10px; border-bottom: 1px solid rgba(255,255,255,13); font-size: 14px; }"
+            "QTableWidget::item:hover { background-color: #333333; }"
             "QTableWidget::item:selected { background-color: #333333; color: #FFFFFF; }"));
         table->verticalHeader()->setVisible(false);
         table->setEditTriggers(QAbstractItemView::NoEditTriggers);

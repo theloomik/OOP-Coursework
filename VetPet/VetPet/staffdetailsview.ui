@@ -53,23 +53,25 @@ QPushButton#editBtn {
     background-color: #3A3A3A;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 14px;
-    padding: 8px 0px;
+    min-height: 40px;
+    padding: 0 18px;
 }
 QPushButton#editBtn:hover {
     background-color: #484848;
 }
 QPushButton#archiveBtn {
-    background-color: #5C3B3B;
+    background-color: #3A3A3A;
     color: #C68B8B;
-    border: none;
-    border-radius: 8px;
+    border: 1.5px solid #7C4A4A;
+    border-radius: 10px;
     font-size: 14px;
-    padding: 8px 0px;
+    min-height: 40px;
+    padding: 0 18px;
 }
 QPushButton#archiveBtn:hover {
-    background-color: #6E4545;
+    background-color: #4A3030;
 }
 QLabel#phoneLbl,
 QLabel#positionLbl,
@@ -93,39 +95,33 @@ QLabel#createdAtValue {
 QLineEdit {
     background-color: #3A3A3A;
     color: white;
-    border: 1px solid #444444;
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 14px;
-    min-height: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 15px;
+    font-size: 15px;
+    min-height: 40px;
 }
 QLineEdit:focus {
-    border: 1px solid #5A9E6F;
-}
-QLineEdit:hover {
-    border: 1px solid #555555;
+    background-color: #202020;
 }
 QComboBox {
     background-color: #3A3A3A;
     color: white;
-    border: 1px solid #444444;
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 14px;
-    min-height: 20px;
-}
-QComboBox:hover {
-    border: 1px solid #555555;
+    border: 1px solid #343434;
+    border-radius: 12px;
+    padding: 0 12px;
+    font-size: 15px;
+    min-height: 40px;
 }
 QComboBox::drop-down {
     border: none;
     width: 24px;
 }
 QComboBox QAbstractItemView {
-    background-color: #3A3A3A;
+    background-color: #2B2B2B;
     color: white;
-    selection-background-color: #484848;
-    border: 1px solid #444444;
+    selection-background-color: #3A3A3A;
+    border: 1px solid #4A4A4A;
     outline: none;
 }
 QLabel#timeSepLabel {
@@ -138,25 +134,26 @@ QLabel#editErrorLabel {
 }
 QPushButton#cancelEditBtn {
     background-color: #3A3A3A;
-    color: white;
+    color: #D0D0D0;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 14px;
-    padding: 10px 0px;
+    min-height: 44px;
 }
 QPushButton#cancelEditBtn:hover {
     background-color: #484848;
 }
 QPushButton#saveEditBtn {
-    background-color: #2E6648;
+    background-color: #2ECC71;
     color: white;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid #76E2A0;
+    border-radius: 12px;
     font-size: 14px;
-    padding: 10px 0px;
+    font-weight: bold;
+    min-height: 44px;
 }
 QPushButton#saveEditBtn:hover {
-    background-color: #3A7D5A;
+    background-color: #33d678;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="outerLayout">

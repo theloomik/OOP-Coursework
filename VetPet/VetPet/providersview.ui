@@ -4,18 +4,20 @@
  <widget class="QWidget" name="ProvidersView">
   <property name="styleSheet">
    <string>
-    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; }
+    QLabel#titleLabel { color: #FFFFFF; font-size: 26px; font-weight: bold; margin-bottom: 20px; }
     QLabel.headerLabel { color: #757575; font-size: 12px; font-weight: 600; }
     QLineEdit#searchEdit { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; font-size: 15px; min-height: 42px; }
+    QLineEdit#searchEdit:focus { background-color: #202020; }
     QLineEdit#searchEdit::placeholder { color: #767676; }
-    QPushButton#sortBtn, QPushButton#newBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: bold; }
+    QPushButton#sortBtn, QPushButton#newBtn { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; font-weight: 600; font-size: 15px; min-height: 42px; }
     QPushButton#sortBtn:hover, QPushButton#newBtn:hover { background-color: #505050; }
     QTableWidget#providersTable { background-color: transparent; color: #FFFFFF; border: none; outline: none; }
     QTableWidget#providersTable::item { border-bottom: 1px solid rgba(255,255,255,13); }
     QTableWidget#providersTable::item:hover { background-color: #333333; }
     QWidget#addOverlay { background-color: rgba(0, 0, 0, 165); }
     QFrame#addModalCard { background-color: #2B2B2B; border: 1px solid #4A4A4A; border-radius: 14px; }
-    QLineEdit.modalField { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; }
+    QLineEdit.modalField { background-color: #3A3A3A; color: #FFFFFF; border: none; border-radius: 10px; padding: 0 14px; min-height: 42px; font-size: 15px; }
+    QLineEdit.modalField:focus { background-color: #202020; }
     QLabel#errorLabel { color: #FF6B6B; font-size: 13px; }
     QPushButton#cancelAddBtn { background-color: #3A3A3A; color: #AAAAAA; border: none; border-radius: 10px; min-height: 42px; }
     QPushButton#saveAddBtn { background-color: #3A3A3A; color: #FFFFFF; border: 1.5px solid #4A7C59; border-radius: 10px; min-height: 42px; font-weight: 600; }
