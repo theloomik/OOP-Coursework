@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QWidget>
 
+class QFrame;
 class QLabel;
 class QPushButton;
 class QTableWidget;
@@ -40,6 +41,9 @@ private:
 
     QVBoxLayout *m_rootLayout = nullptr;
     QLabel *m_titleLabel = nullptr;
+    QLabel *m_subtitleLabel = nullptr;
+    QLabel *m_statsLabel = nullptr;
+    QWidget *m_actionButtonsWidget = nullptr;
     QLabel *m_errorLabel = nullptr;
     QLabel *m_infoTitleLabel = nullptr;
     QLabel *m_firstTitleLabel = nullptr;
@@ -49,6 +53,8 @@ private:
     QTableWidget *m_firstTable = nullptr;
     QTableWidget *m_secondTable = nullptr;
     QTableWidget *m_thirdTable = nullptr;
+    QFrame *m_petsSectionFrame = nullptr;
+    QVBoxLayout *m_petsCardsLayout = nullptr;
 
     void setupUi();
     void resetTables();
@@ -58,6 +64,8 @@ private:
     void setInfoRows(const QList<QPair<QString, QString>> &rows);
     void prepareTable(QLabel *titleLabel, QTableWidget *table, const QString &title, const QStringList &headers);
     void addRow(QTableWidget *table, const QStringList &values);
+    void addPetCard(const QString &name, const QString &species, const QString &breed,
+                    const QString &gender, const QString &birthDate, const QString &lastVisit);
     QString scalarString(const QString &sql, const QVariantList &binds = {}) const;
 };
 
