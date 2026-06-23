@@ -76,7 +76,6 @@ void RecordDetailsView::setupUi()
     outerLayout->setContentsMargins(30, 20, 30, 20);
     outerLayout->setSpacing(14);
 
-    // === Header card ===
     auto *headerCard = new QFrame;
     headerCard->setObjectName(QStringLiteral("headerCard"));
     headerCard->setStyleSheet(QStringLiteral(
@@ -94,7 +93,6 @@ void RecordDetailsView::setupUi()
     connect(backButton, &QPushButton::clicked, this, &RecordDetailsView::onBackClicked);
     headerInner->addWidget(backButton, 0, Qt::AlignTop);
 
-    // Center: name + phone/email + stats
     auto *centerStack = new QWidget;
     centerStack->setStyleSheet(QStringLiteral("background: transparent;"));
     auto *centerLayout = new QVBoxLayout(centerStack);
@@ -121,7 +119,6 @@ void RecordDetailsView::setupUi()
     centerLayout->addWidget(m_statsLabel);
     headerInner->addWidget(centerStack, 1);
 
-    // Right: action buttons (client-only)
     m_actionButtonsWidget = new QWidget;
     m_actionButtonsWidget->setStyleSheet(QStringLiteral("background: transparent;"));
     auto *actionLayout = new QHBoxLayout(m_actionButtonsWidget);
@@ -158,7 +155,6 @@ void RecordDetailsView::setupUi()
     m_errorLabel->setVisible(false);
     outerLayout->addWidget(m_errorLabel);
 
-    // === Scroll area ===
     auto *scroll = new QScrollArea;
     scroll->setWidgetResizable(true);
     scroll->setFrameShape(QFrame::NoFrame);
@@ -176,7 +172,6 @@ void RecordDetailsView::setupUi()
     m_rootLayout->setContentsMargins(0, 0, 4, 20);
     m_rootLayout->setSpacing(14);
 
-    // Section title labels
     m_infoTitleLabel = new QLabel;
     m_firstTitleLabel = new QLabel;
     m_secondTitleLabel = new QLabel;
@@ -188,7 +183,6 @@ void RecordDetailsView::setupUi()
         label->setVisible(false);
     }
 
-    // Tables (shared for staff/provider; also appointments+bills for clients)
     m_infoTable = new QTableWidget;
     m_firstTable = new QTableWidget;
     m_secondTable = new QTableWidget;
@@ -205,7 +199,6 @@ void RecordDetailsView::setupUi()
         table->setVisible(false);
     }
 
-    // Pets section card (client-only)
     m_petsSectionFrame = new QFrame;
     m_petsSectionFrame->setObjectName(QStringLiteral("petsSectionFrame"));
     m_petsSectionFrame->setStyleSheet(QStringLiteral(
@@ -294,14 +287,12 @@ void RecordDetailsView::loadClient()
     const QString email = clientQuery.value(3).toString();
     m_titleLabel->setText(QStringLiteral("%1 %2").arg(lastName, firstName).trimmed());
 
-    // Phone / email subtitle
     QStringList subtitleParts;
     if (!phone.trimmed().isEmpty()) subtitleParts << phone.trimmed();
     if (!email.trimmed().isEmpty()) subtitleParts << email.trimmed();
     m_subtitleLabel->setText(subtitleParts.join(QStringLiteral("  •  ")));
     m_subtitleLabel->setVisible(!subtitleParts.isEmpty());
 
-    // Stats
     const QString petsCount = scalarString(
         QStringLiteral("SELECT COUNT(*) FROM pets WHERE client_id = ?"), {m_recordId});
     const QString appointmentsCount = scalarString(
@@ -322,7 +313,6 @@ void RecordDetailsView::loadClient()
     m_statsLabel->setVisible(true);
     m_actionButtonsWidget->setVisible(true);
 
-    // Pets as cards
     m_petsSectionFrame->setVisible(true);
 
     QSqlQuery petsQuery(m_db);
@@ -347,7 +337,6 @@ void RecordDetailsView::loadClient()
         }
     }
 
-    // Appointments table
     prepareTable(m_secondTitleLabel, m_secondTable, QStringLiteral("Записи"),
                  {QStringLiteral("Дата"), QStringLiteral("Тварина"), QStringLiteral("Лікар"),
                   QStringLiteral("Послуга"), QStringLiteral("Статус")});
@@ -373,7 +362,6 @@ void RecordDetailsView::loadClient()
         }
     }
 
-    // Bills table
     prepareTable(m_thirdTitleLabel, m_thirdTable, QStringLiteral("Рахунки"),
                  {QStringLiteral("Дата"), QStringLiteral("Сума"), QStringLiteral("Оплата"), QStringLiteral("Метод")});
     QSqlQuery billsQuery(m_db);
@@ -548,7 +536,6 @@ void RecordDetailsView::addPetCard(const QString &name, const QString &species, 
         "background: transparent; border: none; color: #C6C6C6; font-size: 13px; margin-top: 4px;"));
     layout->addWidget(lastVisitLabel);
 
-    // Edit / Hide buttons
     auto *btnsWidget = new QWidget;
     btnsWidget->setStyleSheet(QStringLiteral("background: transparent;"));
     auto *btnsLayout = new QHBoxLayout(btnsWidget);

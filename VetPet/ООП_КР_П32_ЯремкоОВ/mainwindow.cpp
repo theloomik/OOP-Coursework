@@ -177,7 +177,7 @@ void MainWindow::setCurrentSection(int index)
 
 void MainWindow::onStaffDetailsBack()
 {
-    setCurrentSection(2); // Staff section
+    setCurrentSection(2);
 }
 
 void MainWindow::openQuickAppointment()
@@ -187,7 +187,6 @@ void MainWindow::openQuickAppointment()
 
     m_quickView->reset();
 
-    // No nav button active while on the quick-appointment page
     ui->navClientsBtn->setChecked(false);
     ui->navRecordsBtn->setChecked(false);
     ui->navStaffBtn->setChecked(false);
@@ -199,7 +198,7 @@ void MainWindow::openQuickAppointment()
 
 void MainWindow::onQuickAppointmentCancelled()
 {
-    setCurrentSection(1); // Return to Appointments page
+    setCurrentSection(1);
 }
 
 void MainWindow::onQuickAppointmentSaved(int clientId)
@@ -208,7 +207,6 @@ void MainWindow::onQuickAppointmentSaved(int clientId)
         m_appointmentsView->reload();
 
     if (clientId > 0 && m_detailsView) {
-        // Navigate directly to the saved client's profile
         m_detailsView->showClient(clientId);
         ui->navClientsBtn->setChecked(false);
         ui->navRecordsBtn->setChecked(false);
@@ -217,6 +215,6 @@ void MainWindow::onQuickAppointmentSaved(int clientId)
         ui->navStockBtn->setChecked(false);
         ui->stackedWidget->setCurrentIndex(m_detailsPageIndex);
     } else {
-        setCurrentSection(1); // Fall back to Appointments page
+        setCurrentSection(1);
     }
 }

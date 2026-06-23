@@ -109,16 +109,11 @@ void QuickAppointmentView::reset()
     loadDropdowns();
 }
 
-// ---------------------------------------------------------------------------
-// Data loading
-// ---------------------------------------------------------------------------
-
 void QuickAppointmentView::loadDropdowns()
 {
     if (!m_db.isValid() || !m_db.isOpen())
         return;
 
-    // Staff (active only – same archived guard as Avalonia)
     m_staff.clear();
     ui->staffCombo->clear();
     QSqlQuery staffQ(m_db);
@@ -141,7 +136,6 @@ void QuickAppointmentView::loadDropdowns()
         }
     }
 
-    // Services (first entry = "no service" placeholder)
     m_services.clear();
     ui->serviceCombo->clear();
     m_services.append({0, QStringLiteral("")});
@@ -157,7 +151,6 @@ void QuickAppointmentView::loadDropdowns()
         }
     }
 
-    // Pet types (cached for the "add pet" dialog)
     m_petTypes.clear();
     QSqlQuery ptQ(m_db);
     if (ptQ.exec(QStringLiteral(
@@ -176,33 +169,27 @@ void QuickAppointmentView::loadDropdowns()
 
 void QuickAppointmentView::seedDateTimeCombos()
 {
-    // Day 1–31
     ui->dayCombo->clear();
     for (int d = 1; d <= 31; ++d)
         ui->dayCombo->addItem(QString::number(d));
 
-    // Month names
     ui->monthCombo->clear();
     for (const QString &name : kMonthNames)
         ui->monthCombo->addItem(name);
 
-    // Years: (currentYear+1) descending to 2024
     const int curYear = QDate::currentDate().year();
     ui->yearCombo->clear();
     for (int y = curYear + 1; y >= 2024; --y)
         ui->yearCombo->addItem(QString::number(y));
 
-    // Hours 00–23
     ui->hourCombo->clear();
     for (int h = 0; h < 24; ++h)
         ui->hourCombo->addItem(QStringLiteral("%1").arg(h, 2, 10, QLatin1Char('0')));
 
-    // Minutes 00, 05, 10 … 55
     ui->minuteCombo->clear();
     for (int m = 0; m < 60; m += 5)
         ui->minuteCombo->addItem(QStringLiteral("%1").arg(m, 2, 10, QLatin1Char('0')));
 
-    // Default: now + 1 hour, rounded to 5-min
     const QDateTime initial = QDateTime::currentDateTime().addSecs(3600);
     const QDate d = initial.date();
     const QTime t = initial.time();
@@ -221,7 +208,6 @@ void QuickAppointmentView::seedDateTimeCombos()
 
 void QuickAppointmentView::searchClients(const QString &phone)
 {
-    // Block combo signals while rebuilding to avoid spurious loadPetsForClient calls
     ui->clientCombo->blockSignals(true);
     m_clients.clear();
     ui->clientCombo->clear();
@@ -263,7 +249,6 @@ void QuickAppointmentView::searchClients(const QString &phone)
     if (m_clients.isEmpty())
         return;
 
-    // Auto-select: prefer exact phone match, otherwise first
     int selectIdx = 0;
     for (int i = 0; i < m_clients.size(); ++i) {
         if (m_clients[i].display.endsWith(QStringLiteral("| %1").arg(trimmed))) {
@@ -304,10 +289,6 @@ void QuickAppointmentView::loadPetsForClient(int clientId)
         }
     }
 }
-
-// ---------------------------------------------------------------------------
-// Slot handlers
-// ---------------------------------------------------------------------------
 
 void QuickAppointmentView::onPhoneTextChanged(const QString &text)
 {
@@ -401,10 +382,6 @@ void QuickAppointmentView::onSaveClicked()
     emit appointmentSaved(clientId);
 }
 
-// ---------------------------------------------------------------------------
-// Helpers – id accessors
-// ---------------------------------------------------------------------------
-
 int QuickAppointmentView::currentClientId() const
 {
     const int idx = ui->clientCombo->currentIndex();
@@ -426,7 +403,6 @@ int QuickAppointmentView::currentStaffId() const
 int QuickAppointmentView::currentServiceId() const
 {
     const int idx = ui->serviceCombo->currentIndex();
-    // Index 0 is the "no service" placeholder (id == 0)
     return (idx > 0 && idx < m_services.size()) ? m_services[idx].id : 0;
 }
 
@@ -441,10 +417,6 @@ void QuickAppointmentView::clearError()
     ui->errorLabel->clear();
     ui->errorLabel->setVisible(false);
 }
-
-// ---------------------------------------------------------------------------
-// Add-client dialog  (mirrors the Avalonia IsAddClientOpen overlay)
-// ---------------------------------------------------------------------------
 
 bool QuickAppointmentView::execAddClientDialog()
 {
@@ -528,7 +500,6 @@ bool QuickAppointmentView::execAddClientDialog()
             return;
         }
 
-        // Pre-fill the phone field so searchClients() finds the new record
         ui->phoneEdit->blockSignals(true);
         ui->phoneEdit->setText(ph);
         ui->phoneEdit->blockSignals(false);
@@ -541,10 +512,6 @@ bool QuickAppointmentView::execAddClientDialog()
     dialog->deleteLater();
     return saved;
 }
-
-// ---------------------------------------------------------------------------
-// Add-pet dialog  (mirrors the Avalonia IsAddPetOpen overlay)
-// ---------------------------------------------------------------------------
 
 bool QuickAppointmentView::execAddPetDialog(int clientId)
 {
@@ -654,7 +621,6 @@ bool QuickAppointmentView::execAddPetDialog(int clientId)
         const int petTypeId = m_petTypes[typeIdx].id;
         const QString gender = genderCombo->currentText();
 
-        // Birth date: index 0 is the "—" placeholder
         const int bdi = bdDay->currentIndex();
         const int bmi = bdMonth->currentIndex();
         const int byi = bdYear->currentIndex();

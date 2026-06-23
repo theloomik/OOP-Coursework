@@ -40,7 +40,6 @@ private:
     int m_staffId = 0;
     bool m_isArchived = false;
 
-    // Cached data for edit mode pre-fill
     QString m_firstName;
     QString m_lastName;
     QString m_phone;

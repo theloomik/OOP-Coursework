@@ -179,8 +179,6 @@ void StaffDetailsView::clearEditError()
     ui->editErrorLabel->setVisible(false);
 }
 
-// ── Slots ──────────────────────────────────────────────────────────────────
-
 void StaffDetailsView::onBackClicked()
 {
     emit backRequested();
@@ -264,8 +262,6 @@ void StaffDetailsView::onSaveEditClicked()
 
     showStaff(m_staffId);
 }
-
-// ── Static helpers ─────────────────────────────────────────────────────────
 
 QString StaffDetailsView::formatWorkDays(const QString &raw)
 {
